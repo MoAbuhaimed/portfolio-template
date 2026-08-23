@@ -1,0 +1,5 @@
+Add a screenshot of your running instance here as preview.png
+(dark mode recommended, matches the default theme) — the README's
+Preview section references docs/preview.png and GitHub will render
+it automatically. Light-mode and mobile screenshots are optional
+extras (e.g. preview-light.png, preview-mobile.png).

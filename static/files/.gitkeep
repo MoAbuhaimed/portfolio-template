@@ -1,0 +1,3 @@
+Put your resume PDF here, e.g. static/files/resume.pdf, then set
+"site.resume_url" in data/portfolio.json to "/static/files/resume.pdf".
+Leave resume_url as "" (or remove it) to hide the navbar Resume button.

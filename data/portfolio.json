@@ -1,0 +1,87 @@
+{
+  "site": {
+    "name": "Your Name",
+    "title": "AI & Software Developer",
+    "description": "A short sentence about who you are and what you build — shown in search results and the browser tab.",
+    "favicon": "images/favicon.svg",
+    "profile_image": "images/profile-placeholder.svg",
+    "profile_image_alt": "Your Name",
+    "initials": "YN",
+    "resume_url": "static/files/example_resume.pdf"
+  },
+
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+
+  "hero": {
+    "badge": "AVAILABLE FOR NEW OPPORTUNITIES",
+    "name_start": "Your",
+    "name_highlight": "Name",
+    "subtitle": "Your role or one-line elevator pitch goes here.",
+    "primary_button": { "label": "Explore Projects", "href": "#projects" },
+    "secondary_button": { "label": "Contact Me", "href": "#contact" },
+    "proof_tags": ["Python", "Flask", "AI & Data"],
+    "terminal": {
+      "filename": "whoami.py",
+      "lines": [
+        "stack = [\"Python\", \"AI\", \"Data\"]",
+        "status = \"shipping\""
+      ]
+    }
+  },
+
+  "about": {
+    "paragraphs": [
+      "Write one or two sentences about who you are, focused on **keywords** you want to stand out — wrap any word in double asterisks to give it the site's gradient accent.",
+      "Use the second paragraph for what you're doing right now and what you're open to, e.g. **internships** or collaborations."
+    ],
+    "json_filename": "about_me.json",
+    "json_fields": {
+      "education": "Your Degree",
+      "focus": ["Artificial Intelligence", "Data", "Python"],
+      "currently_learning": "Something you're studying now",
+      "building": ["Portfolio", "Side Project"],
+      "available_for": "Internships",
+      "location": "Your Country",
+      "status": "Learning • Building • Improving"
+    }
+  },
+
+  "skills": [
+    "Python", "Java", "HTML5", "CSS3",
+    "Flask", "Bootstrap", "Jinja2",
+    "Git", "GitHub", "VS Code", "SQL", "REST APIs"
+  ],
+
+  "projects": [
+    {
+      "title": "Example Project",
+      "description": "One or two sentences describing what this project does and why it matters.",
+      "technologies": ["Flask", "Python"],
+      "image": "",
+      "github_url": "https://github.com/yourusername/example-project",
+      "demo_url": "",
+      "featured": true
+    }
+  ],
+
+  "contact": {
+    "title_start": "Let's",
+    "title_highlight": "Work Together",
+    "description": "Interested in internships, collaborations, or new opportunities? Let's connect.",
+    "email": "you@example.com",
+    "github": "https://github.com/yourusername",
+    "linkedin": "https://www.linkedin.com/in/yourusername",
+    "extra_links": [],
+    "cta_label": "Send an Email"
+  },
+
+  "footer": {
+    "note": "Built with Flask"
+  }
+}

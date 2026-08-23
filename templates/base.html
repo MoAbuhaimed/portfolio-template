@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}{{ data.site.description }}{% endblock %}">
+    <link rel="icon" href="{{ url_for('static', filename=data.site.favicon) }}">
+
+    <!-- Apply saved/preferred theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var wantsLight = stored ? stored === 'light' : window.matchMedia('(prefers-color-scheme: light)').matches;
+          if (wantsLight) document.documentElement.setAttribute('data-theme', 'light');
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>
+        {% block title %}{{ data.site.name }} — {{ data.site.title }}{% endblock %}
+    </title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block styles %}
+    {% endblock %}
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Skip link: first focusable element, visible on keyboard focus -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Scroll progress indicator -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    {% include 'components/navbar.html' %}
+
+    <main id="main-content" class="flex-grow-1" tabindex="-1">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% include 'components/footer.html' %}
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+
+</html>

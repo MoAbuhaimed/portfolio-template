@@ -1,0 +1,359 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ================= HERO — cinematic, full-bleed, asymmetric ================= -->
+<section id="hero" class="hero" aria-labelledby="hero-heading">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="kicker">
+        <span class="status-dot" aria-hidden="true"></span>
+        {{ data.hero.badge }}
+      </span>
+      <h1 id="hero-heading" class="hero-headline">
+        {{ data.hero.name_start }} <span class="grad-text">{{ data.hero.name_highlight }}</span>
+      </h1>
+      <p class="hero-sub">
+        {{ data.hero.subtitle }}
+      </p>
+      <div class="hero-actions">
+        <a href="{{ data.hero.primary_button.href }}" class="btn-glow">{{ data.hero.primary_button.label }}</a>
+        <a href="{{ data.hero.secondary_button.href }}" class="btn-ghost">{{ data.hero.secondary_button.label }}</a>
+      </div>
+
+      <ul class="hero-proof" role="list">
+        {% for tag in data.hero.proof_tags %}
+        <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-photo-card">
+        <img src="{{ url_for('static', filename=data.site.profile_image) }}"
+          alt="{{ data.site.profile_image_alt }}" width="480" height="600" loading="eager"
+          onerror="this.style.display='none'">
+        <span class="hero-photo-fallback" aria-hidden="true">{{ data.site.initials }}</span>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-bar">
+          <span class="hero-panel-dot"></span>
+          <span class="hero-panel-dot"></span>
+          <span class="hero-panel-dot"></span>
+          <span class="hero-panel-name">{{ data.hero.terminal.filename }}</span>
+        </div>
+        <pre class="hero-panel-body"><code>{{ data.hero.terminal.lines | render_terminal_lines }}<span class="hero-cursor"></span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT — diagonal wash, two-column ================= -->
+<section id="about" class="about reveal" aria-labelledby="about-heading">
+  <div class="about-wash" aria-hidden="true"></div>
+  <div class="about-inner">
+    <div class="about-grid">
+      <div class="about-left">
+        <span class="kicker">about</span>
+        <h2 id="about-heading" class="visually-hidden">About Me</h2>
+
+        <div class="about-card">
+          {% for paragraph in data.about.paragraphs %}
+          <p class="about-quote">{{ paragraph | emphasize }}</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="json-editor-float">
+          <div class="json-editor" id="aboutJsonEditor" aria-hidden="true">
+            <div class="json-editor-bar">
+              <span class="json-editor-dot"></span>
+              <span class="json-editor-dot"></span>
+              <span class="json-editor-dot"></span>
+              <span class="json-editor-filename">{{ data.about.json_filename }}</span>
+            </div>
+            <pre class="json-editor-body"><code id="jsonEditorCode" aria-live="off"></code></pre>
+          </div>
+        </div>
+        <span class="visually-hidden">
+          {{ data.about.json_filename }} —
+          {%- for key, value in data.about.json_fields.items() %}
+          {{ key | replace('_', ' ') }}: {% if value is string %}{{ value }}{% else %}{{ value | join(', ') }}{% endif %}{% if not loop.last %};{% endif %}
+          {%- endfor %}.
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS — unified badge cloud ================= -->
+<section id="skills" class="skills reveal" aria-labelledby="skills-heading">
+  <div class="skills-inner">
+    <span class="kicker">stack</span>
+    <h2 id="skills-heading" class="visually-hidden">Skills</h2>
+    <ul class="skills-cloud" role="list">
+      {% for skill in data.skills %}
+      <li class="skill-chip">{{ skill }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- ================= PROJECTS — centerpiece, overlapping glass panel ================= -->
+<section id="projects" class="projects reveal" aria-labelledby="projects-heading">
+  <div class="projects-inner">
+    <span class="kicker">projects</span>
+    <h2 id="projects-heading" class="section-headline">Featured Projects</h2>
+
+    {% for project in projects %}
+    <div class="project-feature">
+      <div class="project-feature-media">
+        <div class="project-feature-bar">
+          <span class="hero-panel-dot"></span>
+          <span class="hero-panel-dot"></span>
+          <span class="hero-panel-dot"></span>
+        </div>
+        <div class="project-feature-canvas">
+          {% if project.image %}
+          <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }}" loading="lazy">
+          {% endif %}
+        </div>
+      </div>
+      <div class="project-feature-card">
+        <h3 class="project-feature-title">{{ project.title }}</h3>
+        <p class="project-feature-text">{{ project.description }}</p>
+
+        {% if project.technologies %}
+        <ul class="project-tech" role="list">
+          {% for tech in project.technologies %}
+          <li class="project-tech-chip">{{ tech }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="project-links">
+          {% if project.github_url %}
+          <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer" class="project-link">
+            View <span aria-hidden="true">&rarr;</span>
+          </a>
+          {% endif %}
+          {% if project.demo_url %}
+          <a href="{{ project.demo_url }}" target="_blank" rel="noopener noreferrer" class="project-link">
+            Live Demo <span aria-hidden="true">&rarr;</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ================= CONTACT — full-bleed gradient CTA ================= -->
+<section id="contact" class="contact reveal" aria-labelledby="contact-heading">
+  <div class="contact-glow" aria-hidden="true"></div>
+  <div class="contact-inner">
+    <span class="kicker kicker-center">contact</span>
+    <h2 id="contact-heading" class="contact-headline">{{ data.contact.title_start }} <span class="grad-text">{{ data.contact.title_highlight }}</span></h2>
+    <p class="contact-sub">{{ data.contact.description }}</p>
+
+    <ul class="contact-links" role="list">
+      {% if data.contact.email %}
+      <li>
+        <a class="contact-pill" href="mailto:{{ data.contact.email }}">
+          <img src="{{ url_for('static', filename='images/envelope.svg') }}" alt="" height="18" width="18">
+          {{ data.contact.email }}
+        </a>
+      </li>
+      {% endif %}
+      {% if data.contact.linkedin %}
+      <li>
+        <a class="contact-pill" target="_blank" rel="noopener noreferrer" href="{{ data.contact.linkedin }}">
+          <img src="{{ url_for('static', filename='images/linkedin.svg') }}" alt="" height="18" width="18">
+          LinkedIn
+        </a>
+      </li>
+      {% endif %}
+      {% if data.contact.github %}
+      <li>
+        <a class="contact-pill" target="_blank" rel="noopener noreferrer" href="{{ data.contact.github }}">
+          <img src="{{ url_for('static', filename='images/github.svg') }}" alt="" height="18" width="18">
+          GitHub
+        </a>
+      </li>
+      {% endif %}
+      {% for link in data.contact.extra_links %}
+      <li>
+        <a class="contact-pill" target="_blank" rel="noopener noreferrer" href="{{ link.url }}">
+          <img src="{{ url_for('static', filename=link.icon if link.icon else 'images/link.svg') }}" alt="" height="18" width="18">
+          {{ link.label }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% if data.contact.email %}
+    <a href="mailto:{{ data.contact.email }}" class="btn-glow btn-glow-lg mt-4">{{ data.contact.cta_label }}</a>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  (function () {
+    "use strict";
+
+    var codeEl = document.getElementById("jsonEditorCode");
+    var editorEl = document.getElementById("aboutJsonEditor");
+    if (!codeEl || !editorEl) return;
+
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* Fields come straight from portfolio.json (data.about.json_fields)
+       so anyone can change what this panel "types" without touching JS. */
+    var fields = {{ data.about.json_fields | tojson }};
+
+    function buildLines(fields) {
+      var lines = [[{ t: "{", c: "jb" }]];
+      var keys = Object.keys(fields);
+      keys.forEach(function (key, i) {
+        var value = fields[key];
+        var comma = i < keys.length - 1 ? { t: ",", c: "jp" } : null;
+        if (Array.isArray(value)) {
+          lines.push([{ t: "  " }, { t: '"' + key + '"', c: "jk" }, { t: ": " }, { t: "[", c: "jb" }]);
+          value.forEach(function (item, j) {
+            var seg = [{ t: "    " }, { t: '"' + item + '"', c: "js" }];
+            if (j < value.length - 1) seg.push({ t: ",", c: "jp" });
+            lines.push(seg);
+          });
+          var closeSeg = [{ t: "  " }, { t: "]", c: "jb" }];
+          if (comma) closeSeg.push(comma);
+          lines.push(closeSeg);
+        } else {
+          var seg = [{ t: "  " }, { t: '"' + key + '"', c: "jk" }, { t: ": " }, { t: '"' + value + '"', c: "js" }];
+          if (comma) seg.push(comma);
+          lines.push(seg);
+        }
+      });
+      lines.push([{ t: "}", c: "jb" }]);
+      return lines;
+    }
+
+    var lines = buildLines(fields);
+
+    var tokens = [];
+    lines.forEach(function (line, li) {
+      line.forEach(function (seg) { tokens.push(seg); });
+      if (li < lines.length - 1) tokens.push({ t: "\n" });
+    });
+
+    function escapeHtml(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function classFor(c) {
+      if (c === "jk") return "json-key";
+      if (c === "js") return "json-string";
+      if (c === "jb") return "json-bracket";
+      if (c === "jp") return "json-punct";
+      return null;
+    }
+
+    var cursorHtml = '<span class="json-cursor" aria-hidden="true">█</span>';
+
+    function render(tokenIndex, charIndex) {
+      var html = "";
+      for (var i = 0; i < tokenIndex; i++) {
+        var tok = tokens[i];
+        var cls = classFor(tok.c);
+        var txt = escapeHtml(tok.t);
+        html += cls ? '<span class="' + cls + '">' + txt + "</span>" : txt;
+      }
+      if (tokenIndex < tokens.length) {
+        var cur = tokens[tokenIndex];
+        var partial = cur.t.slice(0, charIndex);
+        var cls2 = classFor(cur.c);
+        var txt2 = escapeHtml(partial);
+        html += cls2 ? '<span class="' + cls2 + '">' + txt2 + "</span>" : txt2;
+      }
+      html += cursorHtml;
+      codeEl.innerHTML = html;
+    }
+
+    var loopTimer = null;
+
+    function typeLoop() {
+      if (reducedMotion) {
+        render(tokens.length, 0);
+        return;
+      }
+
+      var tIdx = 0;
+      var cIdx = 0;
+
+      function step() {
+        if (tIdx >= tokens.length) {
+          var holdTime = 6000 + Math.random() * 2000; // hold finished JSON 6–8s
+          loopTimer = setTimeout(fadeOutAndRestart, holdTime);
+          return;
+        }
+        var tok = tokens[tIdx];
+        cIdx++;
+        render(tIdx, cIdx);
+        var justTyped = tok.t.charAt(cIdx - 1);
+
+        if (cIdx >= tok.t.length) {
+          tIdx++;
+          cIdx = 0;
+        }
+
+        // fast, continuous typing — whole JSON finishes in ~1.2–1.5s;
+        // only a tiny pause after commas, nothing after lines/brackets
+        var delay = 8 + Math.random() * 16;
+        if (justTyped === ",") {
+          delay += 12 + Math.random() * 16;
+        }
+
+        loopTimer = setTimeout(step, delay);
+      }
+
+      step();
+    }
+
+    function fadeOutAndRestart() {
+      var body = codeEl.parentElement;
+      body.classList.add("json-editor-fading");
+      loopTimer = setTimeout(function () {
+        codeEl.innerHTML = cursorHtml;
+        body.classList.remove("json-editor-fading");
+        loopTimer = setTimeout(typeLoop, 200);
+      }, 400);
+    }
+
+    var started = false;
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !started) {
+              started = true;
+              // editor fades in (200ms), then filename (200ms), then type
+              editorEl.classList.add("is-active");
+              setTimeout(typeLoop, reducedMotion ? 0 : 400);
+              observer.disconnect();
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      observer.observe(editorEl);
+    } else {
+      editorEl.classList.add("is-active");
+      typeLoop();
+    }
+  })();
+</script>
+{% endblock %}
