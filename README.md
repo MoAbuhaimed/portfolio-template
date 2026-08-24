@@ -16,7 +16,7 @@ Not deployed yet — the live project URL will be added after deployment.
 
 ## Preview
 
-![Portfolio-template preview](docs\preview.gif)
+![Portfolio-template preview](docs/preview.gif)
 
 ## Features
 
