@@ -12,7 +12,7 @@ Most portfolio content is driven by [`data/portfolio.json`](data/portfolio.json)
 
 ## Live Project
 
-Not deployed yet — the live project URL will be added after deployment.
+[**View Live Portfolio →**](https://portfolio-template-raq8.onrender.com/)
 
 ## Preview
 

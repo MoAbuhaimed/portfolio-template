@@ -65,7 +65,7 @@
       "technologies": ["Flask", "Python"],
       "image": "images/projects/project_screenshot.png",
       "github_url": "https://github.com/MoAbuhaimed/portfolio-template.git",
-      "demo_url": "",
+      "demo_url": "https://portfolio-template-raq8.onrender.com/",
       "featured": true
     }
   ],
