@@ -63,8 +63,8 @@
       "title": "Example Project",
       "description": "One or two sentences describing what this project does and why it matters.",
       "technologies": ["Flask", "Python"],
-      "image": "",
-      "github_url": "https://github.com/yourusername/example-project",
+      "image": "images/projects/project_screenshot.png",
+      "github_url": "https://github.com/MoAbuhaimed/portfolio-template.git",
       "demo_url": "",
       "featured": true
     }
